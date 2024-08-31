@@ -1,17 +1,18 @@
-import { IWebDriver, selenium } from "./IWebDriver"
+import { IWebDriver } from "./IWebDriver"
+import { WebDriverModel } from "./WebDriverModel";
 
 abstract class WebDriverAbstract implements IWebDriver {
 
   /**
    * WebDriverのインスタンスを生成する
    *
-   * @returns {Promise<selenium.ThenableWebDriver>} 生成されたWebDriver
+   * @returns {WebDriverModel} 生成されたWebDriver
    */
-  async initializeWebDriver(): Promise<selenium.ThenableWebDriver> {
+  initializeWebDriver(): WebDriverModel {
     return this.buildWebDriver();
   }
 
-  abstract buildWebDriver(): Promise<selenium.ThenableWebDriver>;
+  abstract buildWebDriver(): WebDriverModel;
 }
 
-export { WebDriverAbstract, selenium };
+export { WebDriverAbstract };

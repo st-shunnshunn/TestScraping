@@ -1,7 +1,7 @@
-import * as selenium from "selenium-webdriver";
+import { WebDriverModel } from "./WebDriverModel";
 
 interface IWebDriver {
-  initializeWebDriver(): Promise<selenium.ThenableWebDriver>
+  initializeWebDriver(): WebDriverModel
 }
 
-export { selenium, IWebDriver };
+export { IWebDriver };

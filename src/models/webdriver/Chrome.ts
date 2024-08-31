@@ -1,14 +1,16 @@
-import { WebDriverAbstract, selenium } from "./WebDriverAbstract";
+import { WebDriverAbstract } from "./WebDriverAbstract";
+import { WebDriverModel } from "./WebDriverModel";
 import { Options } from 'selenium-webdriver/chrome';
+import { Builder } from "selenium-webdriver";
 
 class Chrome extends WebDriverAbstract {
 
     /**
      * ChromeのWebDriverを生成する
      *
-     * @returns {Promise<selenium.ThenableWebDriver>} WebDriver
+     * @returns {Promise<selenium.WebDriverModel>} WebDriver
      */
-    async buildWebDriver(): Promise<selenium.ThenableWebDriver> {
+    buildWebDriver(): WebDriverModel {
         const chromeOptions = new Options()
             .excludeSwitches('enable-logging', 'enable-automation')
             .addArguments('--disable-gpu')
@@ -17,7 +19,7 @@ class Chrome extends WebDriverAbstract {
             .addArguments('--disable-blink-features=AutomationControlled');
 
         try {
-            return new selenium.Builder().forBrowser('chrome').setChromeOptions(chromeOptions as any).build();
+            return new Builder().forBrowser('chrome').setChromeOptions(chromeOptions as any).build();
         } catch (error) {
             throw error;
         }

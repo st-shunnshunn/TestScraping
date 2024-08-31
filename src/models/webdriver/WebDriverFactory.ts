@@ -1,5 +1,5 @@
-import { IWebDriver } from './webdriver/IWebDriver';
-import { Chrome as ChromeWebDriver } from './webdriver/Chrome';
+import { IWebDriver } from './IWebDriver';
+import { Chrome as ChromeWebDriver } from './Chrome';
 
 enum Browser {
     Chrome,
@@ -14,16 +14,16 @@ class WebDriverFactory {
      * @throws Error 対応していないブラウザー
      */
     static getDriver(browser: Browser): IWebDriver {
-        let driverPromise: IWebDriver;
+        let driver: IWebDriver;
         switch (browser) {
             case Browser.Chrome:
-                driverPromise = new ChromeWebDriver();
+                driver = new ChromeWebDriver();
                 break;
             default:
-                throw new Error(`Unsupported browser: ${browser}`);
+                throw new Error(`Unsupported browser: ${Browser[browser]}`);
         }
 
-        return driverPromise;
+        return driver;
     }
 }
 

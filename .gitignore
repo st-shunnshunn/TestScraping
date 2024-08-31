@@ -3,6 +3,6 @@ keys/
 log/
 build/
 *-workspace
-
+*.log
 .env
 *.txt

@@ -10,7 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "selenium-webdriver": "^4.24.0"
+    "dotenv": "^16.4.5",
+    "selenium-webdriver": "^4.24.0",
+    "winston": "^3.14.2"
   },
   "devDependencies": {
     "@types/node": "^22.5.1",
