@@ -12,12 +12,8 @@ if (require.main === module) {
 
 async function main() {
     try {
-
-
         const webDriver: IWebDriver = WebDriverFactory.getDriver(Browser.Chrome);
-        new ScrapingService(webDriver).main()
-
-        //await driver.get('https://www.google.com');
+        await new ScrapingService(webDriver).main()
 
         // 外部ファイルで操作するようにする
     } catch (e: unknown) {
