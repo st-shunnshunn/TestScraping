@@ -1,5 +1,5 @@
 import { IHandler } from "./IHandler";
-import { WebDriverModel } from "../webdriver/WebDriverModel";
+import { IWebDriver } from "../webdriver/IWebDriver";
 import logger from "../../utils/logger";
 
 abstract class ScrapingHandlerAbstract implements IHandler {
@@ -10,7 +10,7 @@ abstract class ScrapingHandlerAbstract implements IHandler {
         return handler;
     }
 
-    async handle(driver: WebDriverModel): Promise<boolean> {
+    async handle(driver: IWebDriver): Promise<boolean> {
         const ret = await this.mainHandle(driver);
         logger.info(`handle result=${ret}`);
         if (ret == false || this.nextHandler == null) {
@@ -21,7 +21,7 @@ abstract class ScrapingHandlerAbstract implements IHandler {
         }
     }
 
-    abstract mainHandle(driver: WebDriverModel): Promise<boolean>
+    abstract mainHandle(driver: IWebDriver): Promise<boolean>
 }
 
 export { ScrapingHandlerAbstract };

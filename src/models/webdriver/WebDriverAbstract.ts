@@ -1,18 +1,15 @@
 import { IWebDriver } from "./IWebDriver"
-import { WebDriverModel } from "./WebDriverModel";
+import { WebDriver } from "selenium-webdriver"
 
 abstract class WebDriverAbstract implements IWebDriver {
 
-  /**
-   * WebDriverのインスタンスを生成する
-   *
-   * @returns {WebDriverModel} 生成されたWebDriver
-   */
-  initializeWebDriver(): WebDriverModel {
-    return this.buildWebDriver();
+  constructor(protected webDriver: WebDriver) {
   }
 
-  abstract buildWebDriver(): WebDriverModel;
+  abstract transitionPage(url: string): Promise<boolean>;
+  abstract searchContent(selector: string, fn: Function): Promise<string>;
+  abstract clickElement(selector: string): Promise<boolean>;
+  abstract actionElement(elector: string, fn: Function): Promise<boolean>;
 }
 
 export { WebDriverAbstract };

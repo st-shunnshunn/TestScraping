@@ -1,5 +1,5 @@
 import { IWebDriver } from './IWebDriver';
-import { Chrome as ChromeWebDriver } from './Chrome';
+import { SeleniumChromeWebDriver } from './SeleniumChromeWebDriver';
 
 enum Browser {
     Chrome,
@@ -17,7 +17,7 @@ class WebDriverFactory {
         let driver: IWebDriver;
         switch (browser) {
             case Browser.Chrome:
-                driver = new ChromeWebDriver();
+                driver = new SeleniumChromeWebDriver();
                 break;
             default:
                 throw new Error(`Unsupported browser: ${Browser[browser]}`);

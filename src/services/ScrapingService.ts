@@ -13,15 +13,14 @@ class ScrapingService {
     }
 
     async main() {
-        await new LineNotify().notify("test", "test");
+        //await new LineNotify().notify("test", "test");
 
         const test = new ScrapingSettings().readSetting();
 
-        const webDriverModel = this.webDriver.initializeWebDriver();
+        await this.webDriver.transitionPage("https://www.google.com/");
 
         // 引数？
-        const handle = new ScrapingMainHandler(webDriverModel)
-        handle.setStartPageUrl("https://www.google.com");
+        const handle = new ScrapingMainHandler(this.webDriver)
         handle.setNext(new MainPageHandler());
         handle.start();
     }

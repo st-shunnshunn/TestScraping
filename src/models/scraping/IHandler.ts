@@ -1,8 +1,8 @@
-import { WebDriverModel } from "../webdriver/WebDriverModel";
+import { IWebDriver } from "../webdriver/IWebDriver";
 
 interface IHandler {
     setNext(handler: IHandler): IHandler;
-    handle(driver: WebDriverModel): Promise<boolean>;
+    handle(driver: IWebDriver): Promise<boolean>;
 }
 
 export { IHandler };
