@@ -3,6 +3,8 @@ import { IWebDriver } from "../webdriver/IWebDriver";
 import logger from "../../utils/logger";
 
 abstract class ScrapingHandlerAbstract implements IHandler {
+    abstract getPriority(): number;
+
     protected nextHandler!: IHandler;
 
     setNext(handler: IHandler): IHandler {

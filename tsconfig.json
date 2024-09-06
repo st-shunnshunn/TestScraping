@@ -12,12 +12,10 @@
     },
     "include": [
         "src/**/*",
-        "src/configs/**/*"
     ],
     "exclude": [
         "node_modules"
     ],
-    "rootDir": "./src",
     "copy": {
         "patterns": [
             {

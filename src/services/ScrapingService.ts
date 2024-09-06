@@ -1,9 +1,10 @@
 import { IWebDriver } from "../models/webdriver/IWebDriver";
 import { ScrapingSettings } from "../models/ScrapingSettings";
 import { ScrapingMainHandler } from "../models/scraping/ScrapingMainHandler";
-import { MainPageHandler } from "../models/scraping/MainPageHandler";
+import LoadScrapingHandler from "../models/scraping/LoadScrapingHandler";
 
 import { LineNotify } from "../models/notify/LineNotify";
+import { IHandler } from "../models/scraping/IHandler";
 
 class ScrapingService {
     private readonly webDriver: IWebDriver;
@@ -12,17 +13,18 @@ class ScrapingService {
         this.webDriver = webDriver;
     }
 
-    async main() {
+    async main(handlers: IHandler[]) {
         //await new LineNotify().notify("test", "test");
 
         const test = new ScrapingSettings().readSetting();
 
-        await this.webDriver.transitionPage("https://www.google.com/");
+        const startHandle = new ScrapingMainHandler(this.webDriver)
+        handlers.reduce((curent, next) => {
+            curent.setNext(next)
+            return next
+        }, startHandle);
 
-        // 引数？
-        const handle = new ScrapingMainHandler(this.webDriver)
-        handle.setNext(new MainPageHandler());
-        handle.start();
+        startHandle.start();
     }
 
 }

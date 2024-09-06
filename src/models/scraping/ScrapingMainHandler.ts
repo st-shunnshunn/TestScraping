@@ -2,6 +2,9 @@ import { ScrapingHandlerAbstract } from "./ScrapingHandlerAbstract";
 import { IWebDriver } from "../webdriver/IWebDriver";
 
 class ScrapingMainHandler extends ScrapingHandlerAbstract {
+    getPriority(): number {
+        return -1;
+    }
 
     constructor(private webDriver: IWebDriver) {
         super();

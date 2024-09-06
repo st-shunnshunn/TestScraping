@@ -2,6 +2,7 @@ node_modules/
 keys/
 log/
 build/
+*_site/
 *-workspace
 *.log
 .env
