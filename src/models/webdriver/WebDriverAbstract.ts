@@ -1,5 +1,5 @@
 import { IWebDriver } from "./IWebDriver"
-import { WebDriver } from "selenium-webdriver"
+import { WebDriver, WebElement } from "selenium-webdriver"
 
 abstract class WebDriverAbstract implements IWebDriver {
 
@@ -9,7 +9,9 @@ abstract class WebDriverAbstract implements IWebDriver {
   abstract transitionPage(url: string): Promise<boolean>;
   abstract searchContent(selector: string, fn: Function): Promise<string>;
   abstract clickElement(selector: string): Promise<boolean>;
-  abstract actionElement(elector: string, fn: Function): Promise<boolean>;
+  abstract actionElement(elector: string, fn: ActionElement<WebElement, Boolean>): Promise<boolean>;
 }
 
-export { WebDriverAbstract };
+type ActionElement<WebElement, Boolean> = (arg: WebElement) => Boolean;
+
+export { WebDriverAbstract, ActionElement };

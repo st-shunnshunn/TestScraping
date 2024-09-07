@@ -25,7 +25,7 @@ class LineNotify extends NotifyAbstract {
 
     private createPushMessageRequest(content: string): line.messagingApi.PushMessageRequest {
         return {
-            to: process.env.LINE_USER_ID!,
+            to: process.env.LINE_USER_ID as string,
             messages: [{ type: 'text', text: content }]
         };
     }

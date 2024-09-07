@@ -15,7 +15,7 @@ async function main() {
     try {
         const webDriver: IWebDriver = WebDriverFactory.getDriver(Browser.Chrome);
         const handlers = await new LoadScrapingHandler().load();
-        await new ScrapingService(webDriver).main(handlers)
+        await new ScrapingService(webDriver, handlers).main(handlers)
 
         // 外部ファイルで操作するようにする
     } catch (e: unknown) {

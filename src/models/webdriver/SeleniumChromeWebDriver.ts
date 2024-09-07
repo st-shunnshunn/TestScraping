@@ -1,6 +1,7 @@
-import { WebDriverAbstract } from "./WebDriverAbstract";
+import { WebDriverAbstract, ActionElement } from "./WebDriverAbstract";
 import { Options } from 'selenium-webdriver/chrome';
-import { Builder } from "selenium-webdriver";
+import { Builder, until, By, WebElement } from "selenium-webdriver";
+import logger from "../../utils/logger";
 
 class SeleniumChromeWebDriver extends WebDriverAbstract {
 
@@ -16,19 +17,44 @@ class SeleniumChromeWebDriver extends WebDriverAbstract {
     }
 
     async transitionPage(url: string): Promise<boolean> {
-        await this.webDriver.get(url);
-        return true;
+        let ret = false;
+        try {
+            await this.webDriver.get(url);
+            ret = true;
+        } catch (e) {
+            ret = false;
+            logger.error(e);
+        }
+        return ret;
     }
 
     async searchContent(selector: string, fn: Function): Promise<string> {
         return "";
     }
     async clickElement(selector: string): Promise<boolean> {
-        return true;
+        let ret = false;
+        try {
+            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 1000);
+            await elem.click();
+            ret = true;
+        } catch (e) {
+            ret = false;
+            logger.error(e);
+        }
+        return ret;
     }
-    async actionElement(selector: string, fn: Function): Promise<boolean> {
-        return true;
+    async actionElement(selector: string, fn: ActionElement<WebElement, Boolean>): Promise<boolean> {
+        let ret = false;
+        try {
+            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 1000);
+            // TODO 本来であれば、インターフェースに外部から使用する定義を作成すべき
+            fn(elem);
+            return true;
+        } catch (e) {
+            ret = false;
+            logger.error(e);
+        }
+        return ret;
     }
 }
-
 export { SeleniumChromeWebDriver };
