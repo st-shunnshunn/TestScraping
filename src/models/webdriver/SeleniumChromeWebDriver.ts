@@ -1,7 +1,7 @@
 import { WebDriverAbstract, ActionElement } from "./WebDriverAbstract";
 import { Options } from 'selenium-webdriver/chrome';
 import { Builder, until, By, WebElement } from "selenium-webdriver";
-import logger from "../../utils/logger";
+import logger from "../../utils/Logger";
 
 class SeleniumChromeWebDriver extends WebDriverAbstract {
 
@@ -34,7 +34,7 @@ class SeleniumChromeWebDriver extends WebDriverAbstract {
     async clickElement(selector: string): Promise<boolean> {
         let ret = false;
         try {
-            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 1000);
+            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 10000);
             await elem.click();
             ret = true;
         } catch (e) {
@@ -46,7 +46,7 @@ class SeleniumChromeWebDriver extends WebDriverAbstract {
     async actionElement(selector: string, fn: ActionElement<WebElement, Boolean>): Promise<boolean> {
         let ret = false;
         try {
-            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 1000);
+            const elem: WebElement = await this.webDriver.wait(until.elementLocated(By.css(selector)), 10000);
             // TODO 本来であれば、インターフェースに外部から使用する定義を作成すべき
             fn(elem);
             return true;

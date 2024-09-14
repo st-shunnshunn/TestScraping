@@ -1,9 +1,9 @@
 import { WebDriverFactory, Browser } from './models/webdriver/WebDriverFactory'
 import { IWebDriver } from './models/webdriver/IWebDriver';
-import logger from './utils/logger';
 
 import { ScrapingService } from './services/ScrapingService';
 import LoadScrapingHandler from './models/scraping/LoadScrapingHandler';
+import logger from './utils/Logger';
 
 if (require.main === module) {
     logger.info('start');

@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
-import logger from '../../utils/logger';
 import { IHandler } from './IHandler';
 import { ScrapingHandlerAbstract } from './ScrapingHandlerAbstract';
+import logger from '../../utils/Logger';
 
 dotenv.config();
 

@@ -1,4 +1,4 @@
-import logger from "../../utils/logger";
+import logger from "../../utils/Logger";
 import { INotify } from "./INotify";
 import { NotifyType } from "./NotifyType";
 

@@ -1,7 +1,7 @@
-import logger from "../../utils/logger";
 import { NotifyAbstract } from "./NotifyAbstract";
 import * as line from '@line/bot-sdk';
 import { NotifyType } from "./NotifyType";
+import logger from "../../utils/Logger";
 
 class LineNotify extends NotifyAbstract {
     private readonly lineClient: line.messagingApi.MessagingApiClient;
