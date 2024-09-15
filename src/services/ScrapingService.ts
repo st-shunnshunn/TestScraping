@@ -2,14 +2,16 @@ import { IWebDriver } from "../models/webdriver/IWebDriver";
 import { ScrapingSettings } from "../models/ScrapingSettings";
 import { ScrapingMainHandler } from "../models/scraping/ScrapingMainHandler";
 
-import { LineNotify } from "../models/notify/LineNotify";
 import { IHandler } from "../models/scraping/IHandler";
+import { INotify } from "../models/notify/INotify";
+import { NotifyServiceAbstract } from "./NotifyServiceAbstract";
 
-class ScrapingService {
+class ScrapingService extends NotifyServiceAbstract {
     private readonly webDriver: IWebDriver;
     private readonly mainHandle: ScrapingMainHandler;
 
     constructor(webDriver: IWebDriver, handlers: IHandler[]) {
+        super();
         this.webDriver = webDriver;
 
         this.mainHandle = new ScrapingMainHandler(this.webDriver)
@@ -23,11 +25,10 @@ class ScrapingService {
         }, mainHandle);
     }
 
-    async main(handlers: IHandler[]) {
-        //await new LineNotify().notify("test", "test");
-
+    async start() {
         const test = new ScrapingSettings().readSetting();
-        this.mainHandle.start();
+        const ret = await this.mainHandle.start();
+        this.notify("", `結果=${ret}`);
     }
 
 }

@@ -4,7 +4,7 @@ import { NotifyType } from "./NotifyType";
 
 class NotifyFactory {
 
-    static createNotify(notifyType: NotifyType): INotify {
+    static getNotify(notifyType: NotifyType): INotify {
         switch (notifyType) {
             case NotifyType.Line:
                 return new LineNotify();
