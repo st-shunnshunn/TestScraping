@@ -1,9 +1,8 @@
 import { IWebDriver } from "../models/webdriver/IWebDriver";
-import { ScrapingSettings } from "../models/ScrapingSettings";
+import { ScrapingSettings } from "./ScrapingSettingsService";
 import { ScrapingMainHandler } from "../models/scraping/ScrapingMainHandler";
 
 import { IHandler } from "../models/scraping/IHandler";
-import { INotify } from "../models/notify/INotify";
 import { NotifyServiceAbstract } from "./NotifyServiceAbstract";
 
 class ScrapingService extends NotifyServiceAbstract {

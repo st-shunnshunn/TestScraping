@@ -1,5 +1,5 @@
-import { ScrapingSettingsFactory, Setting } from "./scrapingSetting/ScrapingSettingsFactory";
-import { SettingModel } from "./scrapingSetting/SettingModel";
+import { ScrapingSettingsFactory, Setting } from "../models/scraping/scrapingSetting/ScrapingSettingsFactory";
+import { SettingModel } from "../models/scraping/scrapingSetting/SettingModel";
 
 class ScrapingSettings {
     public readSetting(): SettingModel {
