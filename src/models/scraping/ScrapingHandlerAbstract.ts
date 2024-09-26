@@ -30,10 +30,14 @@ abstract class ScrapingHandlerAbstract implements IHandler {
     async handle(driver: IWebDriver): Promise<boolean> {
         const handlerResult: boolean = await this.mainHandle(driver);
         logger.info(`${utils.getCallFunctionName()} : handlerResult=${handlerResult}`);
-        if (handlerResult === false || this.nextHandler == null) {
-            return false;
-        } else {
+        if (handlerResult === true) {
+            if (this.nextHandler == null) {
+                return true;    
+            }
             return this.nextHandler.handle(driver);
+        }
+        else {
+            return false;
         }
     }
 
