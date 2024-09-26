@@ -47,7 +47,7 @@ class SeleniumChromeWebDriver extends WebDriverAbstract {
         try {
             const elems: WebElement[] = await this.webDriver.findElements(By.css(selector));
             // TODO 本来であれば、インターフェースに外部から使用する定義を作成すべき
-            fn(elems);
+            await fn(elems);
             return true;
         } catch (e) {
             ret = false;
