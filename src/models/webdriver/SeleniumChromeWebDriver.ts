@@ -42,13 +42,12 @@ class SeleniumChromeWebDriver extends WebDriverAbstract {
         }
         return ret;
     }
-    async actionElement(selector: string, fn: ActionElement<Array<WebElement>, Boolean>): Promise<boolean> {
+    async actionElement(selector: string, fn: ActionElement<Array<WebElement>, boolean>): Promise<boolean> {
         let ret = false;
         try {
             const elems: WebElement[] = await this.webDriver.findElements(By.css(selector));
             // TODO 本来であれば、インターフェースに外部から使用する定義を作成すべき
-            await fn(elems);
-            return true;
+            ret = await fn(elems);
         } catch (e) {
             ret = false;
             logger.error(e);
